@@ -1,4 +1,5 @@
-# Typing Speed Test made in Python 3.10.4 using Tkinter for GUI
+# Typing Speed Test 
+## Made in Python 3.10.4 using Tkinter for GUI
 
 Requires:
 - Pillow
