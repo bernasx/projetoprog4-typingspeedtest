@@ -38,7 +38,7 @@ class Gamescreen(CustomWindow):
         self.textfield.config(state= "disabled")
 
         # rest of the elements
-        self.timerLbl = Label(self.window, text='--:--')
+        self.timerLbl = Label(self.window, text='--:--',  font=("Helvetica", 24), bg='#d3d3d3')
         self.timerLbl.grid(row=0, column=1, pady=10)
         self.startButton = Button(self.window, text='Start Test', command=self.onStart)
         self.startButton.grid(row=3, column=1, pady=10)
@@ -60,7 +60,7 @@ class Gamescreen(CustomWindow):
 
     def clock(self):
         if self.timer == 0:
-            self.timerLbl.config(text=f'00:{self.timer}')
+            self.timerLbl.config(text=f'00:0{self.timer}')
             self.gameEnd()
             return
         if self.timer == 60:

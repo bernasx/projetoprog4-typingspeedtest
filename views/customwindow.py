@@ -11,6 +11,7 @@ class CustomWindow:
         root_y = root.winfo_rooty()
         window.geometry(f'+{root_x}+{root_y}')
         window.geometry('800x600')
+        window.configure(bg='#d3d3d3')
         root.withdraw()
 
      def quitWindow(self):
