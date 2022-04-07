@@ -1,3 +1,4 @@
+# base class for all windows that will open in the menu
 from tkinter import *
 class CustomWindow:
      def __init__(self, root):
