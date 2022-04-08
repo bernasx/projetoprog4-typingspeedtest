@@ -37,10 +37,14 @@ class Gamescreen(CustomWindow):
         
         #textfield config
         sv = StringVar()
-        sv.trace("w", lambda name, index,mode, sv=sv: self.onType(sv))
+        sv.trace_add("write", lambda name, index,mode, sv=sv: self.onType(sv))
         self.textfield = Entry(self.window, width=50, textvariable = sv)
         self.textfield.grid(row=2, column=1, pady=(0,15))
         self.textfield.config(state= "disabled")
+        self.textfield.bind("<Left>", lambda e: "break") # Disables the left arrow key
+        self.textfield.bind("<Right>", lambda e: "break") # Disables the right arrow key
+        self.textfield.bind("<Double-Button-1>", lambda e: "break") # Disables the mouse double click
+        self.textfield.bind("<B1-Motion>", lambda e: "break")
 
         # rest of the elements
         self.timerLbl = Label(self.window, text='--:--',  font=("Helvetica", 24), bg='#d3d3d3')
@@ -51,8 +55,11 @@ class Gamescreen(CustomWindow):
 
     # this is where the main logic for the game happens
     def onType(self, sv):
+        self.textfield.bind("<Button-1>", lambda e: "break") # Disables the mouse button
         #if we're at 0 chars, don't do anything
         if len(sv.get()) == 0:
+            self.textArea.tag_config(f"0",foreground="black")
+            self.currentIndex = 0
             return
         # handle backspaces
         entrylength = len(sv.get())-1 
@@ -81,6 +88,7 @@ class Gamescreen(CustomWindow):
 
     def gameEnd(self):
         # TODO - Add DB code here to save stuff to DB if it's the end of the game
+        self.textfield.unbind("<Button-1>") # Re-enables the mouse button
         self.textfield.config(state= "disabled")
         self.startButton.config(state= "normal")
         self.timer = 60
