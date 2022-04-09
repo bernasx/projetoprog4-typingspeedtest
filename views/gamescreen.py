@@ -76,7 +76,6 @@ class Gamescreen(CustomWindow):
             self.textArea.tag_config(f"{entrylength}",foreground="green")
         else:
             self.textArea.tag_config(f"{entrylength}",foreground="red")
-        
 
     def onReturn(self): 
         self.quitWindow()
@@ -88,6 +87,16 @@ class Gamescreen(CustomWindow):
 
     def gameEnd(self):
         # TODO - Add DB code here to save stuff to DB if it's the end of the game
+        wpm = 0
+        cpm = 0
+        textfieldInput = self.textfield.get()
+        textareaInput = self.textArea.get('1.0', END)
+
+        for i in range(0,len(textfieldInput.split(' '))):
+            if(textfieldInput.split(' ')[i] == textareaInput.split(' ')[i]):
+                wpm += 1
+                cpm += len(textfieldInput.split(' ')[i])
+        
         self.textfield.unbind("<Button-1>") # Re-enables the mouse button
         self.textfield.config(state= "disabled")
         self.startButton.config(state= "normal")
