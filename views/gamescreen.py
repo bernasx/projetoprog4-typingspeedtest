@@ -97,10 +97,27 @@ class Gamescreen(CustomWindow):
                 wpm += 1
                 cpm += len(textfieldInput.split(' ')[i])
         
+        finishPopup = Toplevel(self.window)
+        finishPopup.geometry('200x200')
+        Label(finishPopup, text=f'Words Per Minute: {wpm}').pack()
+        Label(finishPopup, text=f'Characters Per Minute: {cpm}').pack()
+
         self.textfield.unbind("<Button-1>") # Re-enables the mouse button
+        self.textfield.delete(0, END)
         self.textfield.config(state= "disabled")
         self.startButton.config(state= "normal")
         self.timer = 60
+        random.shuffle(WordList.wordlist)
+        self.textArea.config(state='normal')
+        self.textArea.delete('1.0', END)
+        self.textArea.insert(INSERT,' '.join(WordList.wordlist))
+        for tag in self.textArea.tag_names():
+            self.textArea.tag_delete(tag)
+        for i in range(0, len(self.textArea.get("1.0",END)) + 1):
+            self.textArea.tag_add(f'{i}',f'1.{i}')
+        self.textArea.config(state='disabled')
+        
+        
 
     def clock(self):
         if self.timer == 0:
