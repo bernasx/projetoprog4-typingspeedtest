@@ -25,16 +25,14 @@ class MainMenu:
         def onCredits():
             CreditsScreen(root) 
 
-
-
         # position elements appropriately 
         ## give more weight to other columns to center the grid
         root.grid_columnconfigure((0, 4), weight=1)
 
-        ## Load the image
+         ## Load the image
         image=Image.open(r'logo.png')
         img=image.resize((256, 256))
-        my_img=ImageTk.PhotoImage(img)
+        my_img=ImageTk.PhotoImage(img, name='logo')
         imgLbl = Label(image=my_img, background='#d3d3d3')
         imgLbl.grid(row=0, column=1, pady=50)
 
