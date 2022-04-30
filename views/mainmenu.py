@@ -1,6 +1,7 @@
 from tkinter import *
 from turtle import back
 from views.gamescreen import Gamescreen
+from views.creditscreen import CreditsScreen
 from PIL import Image, ImageTk
 
 class MainMenu:
@@ -14,11 +15,11 @@ class MainMenu:
             Gamescreen(root)
 
         def onLeaderboard():
-            #show leaderboard
+            CreditsScreen(root)
             pass 
 
         def onCredits():
-            #show leaderboard
+            
             pass 
 
 
