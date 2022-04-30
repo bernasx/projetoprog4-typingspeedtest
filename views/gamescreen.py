@@ -11,6 +11,7 @@ class Gamescreen(CustomWindow):
     timerLbl = 0
     startButton = 0
     timer = 60
+    
     currentIndex = 0
     def __init__(self, root):
         super().__init__(root)

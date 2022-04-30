@@ -1,4 +1,5 @@
 from tkinter import *
+from turtle import back
 from views.gamescreen import Gamescreen
 from PIL import Image, ImageTk
 
@@ -27,10 +28,10 @@ class MainMenu:
         root.grid_columnconfigure((0, 4), weight=1)
 
         ## Load the image
-        image=Image.open(r'logo.jpg')
+        image=Image.open(r'logo.png')
         img=image.resize((256, 256))
         my_img=ImageTk.PhotoImage(img)
-        imgLbl = Label(image=my_img)
+        imgLbl = Label(image=my_img, background='#d3d3d3')
         imgLbl.grid(row=0, column=1, pady=50)
 
         ## all the remaining elements
