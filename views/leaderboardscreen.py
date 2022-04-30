@@ -10,6 +10,7 @@ class LeaderboardScreen(CustomWindow):
         self.window.title("ISTEC Typing Speed Test")
         self.window.grid_columnconfigure((0, 4), weight=1)   
         
+        # setup table
         table = Treeview(self.window, columns=('date','player','wpm','cpm'))
         table.column("#0", width=0,  stretch=NO)
         table.column("date",anchor=CENTER, width=150)  
@@ -23,6 +24,7 @@ class LeaderboardScreen(CustomWindow):
         table.heading("cpm",text="CPM",anchor=CENTER)
         table.grid(row=3, column=1, pady=10)
         
+        #database stuff
         db = Database()
         data = db.fetchAllQuery('''SELECT * FROM games''')
         count = 0
@@ -30,7 +32,8 @@ class LeaderboardScreen(CustomWindow):
             table.insert(parent='',index='end',text='', iid=count, values=game)
             count+=1
         db.close()
-        Button(self.window, text='Return', command=self.onReturn).grid(row=4, column=1, pady=10)
+
+        Button(self.window, text='Return', command=self.onReturn).grid(row=4, column=1, pady=(310, 10))
 
     def onReturn(self): 
         self.quitWindow()
