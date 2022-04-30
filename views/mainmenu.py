@@ -2,6 +2,7 @@ from tkinter import *
 from turtle import back
 from views.gamescreen import Gamescreen
 from views.creditscreen import CreditsScreen
+from views.leaderboardscreen import LeaderboardScreen
 from PIL import Image, ImageTk
 
 class MainMenu:
@@ -19,9 +20,8 @@ class MainMenu:
             else:
                 Gamescreen(root, 'Unknown Player')
         def onLeaderboard():
-            #TODO - Add Leaderboard
-            pass 
-
+            LeaderboardScreen(root)
+            
         def onCredits():
             CreditsScreen(root) 
 

@@ -61,7 +61,7 @@ class Gamescreen(CustomWindow):
         self.textfield.bind("<Button-1>", lambda e: "break") # Disables the mouse button
         #if we're at 0 chars, don't do anything
         if len(sv.get()) == 0:
-            self.textArea.tag_config(f"0",foreground="black")
+            self.textArea.tag_config(f"0",foreground="black", underline=False)
             self.currentIndex = 0
             return
         # handle backspaces
@@ -70,15 +70,15 @@ class Gamescreen(CustomWindow):
             self.currentIndex = entrylength + 1
             pass
         else:
-            self.textArea.tag_config(f"{entrylength+1}",foreground="black")
+            self.textArea.tag_config(f"{entrylength+1}",foreground="black", underline=False)
             self.currentIndex = entrylength + 1
             return
 
         #color stuff correctly
         if sv.get()[-1] == self.textArea.get(f'1.{entrylength}'):
-            self.textArea.tag_config(f"{entrylength}",foreground="green")
+            self.textArea.tag_config(f"{entrylength}",foreground="green", underline=False)
         else:
-            self.textArea.tag_config(f"{entrylength}",foreground="red")
+            self.textArea.tag_config(f"{entrylength}",foreground="red", underline=True)
 
     def onReturn(self): 
         self.quitWindow()
