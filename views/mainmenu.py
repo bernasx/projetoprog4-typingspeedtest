@@ -5,15 +5,19 @@ from views.creditscreen import CreditsScreen
 from PIL import Image, ImageTk
 
 class MainMenu:
+
     def __init__(self):
         #Start Tkinter GUI, set it to a resolution of 800px in width to 600px in height
         root = Tk()
         root.geometry('800x600') # TODO - maybe make this a setting?
         root.configure(bg='#d3d3d3')
         root.title("ISTEC Type Speed Test")
+        username = StringVar()
         def onStartTest():
-            Gamescreen(root)
-
+            if username.get() != '':
+                Gamescreen(root, username.get())
+            else:
+                Gamescreen(root, 'Unknown Player')
         def onLeaderboard():
             #TODO - Add Leaderboard
             pass 
@@ -35,8 +39,8 @@ class MainMenu:
         imgLbl.grid(row=0, column=1, pady=50)
 
         ## all the remaining elements
-        Label(root, bg='#d3d3d3', text='Enter Username:').grid(row=1, column=1, padx=(0,210))
-        Entry(root, width=50).grid(row=2, column=1, pady=(0,15))
+        Label(root, bg='#d3d3d3', text='Enter Username:').grid(row=1, column=1, padx=(0,350))
+        Entry(root, width=50, textvariable= username).grid(row=2, column=1, pady=(2,15))
         Button(root, text='Start Test', width=15, command=onStartTest).grid(row=3, column=1, pady=10)
         Button(root, text='Leaderboard', width=15, command=onLeaderboard).grid(row=4, column=1, pady=10)
         Button(root, text='Credits', width=15, command=onCredits).grid(row=5, column=1, pady=10)

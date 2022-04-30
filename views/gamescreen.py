@@ -13,7 +13,7 @@ class Gamescreen(CustomWindow):
     timer = 60
     
     currentIndex = 0
-    def __init__(self, root):
+    def __init__(self, root, username):
         super().__init__(root)
 
         # sets the title of the Toplevel widget
