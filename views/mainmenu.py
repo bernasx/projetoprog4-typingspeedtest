@@ -39,7 +39,7 @@ class MainMenu:
         imgLbl.grid(row=0, column=1, pady=50)
 
         ## all the remaining elements
-        Label(root, bg='#d3d3d3', text='Enter Username:').grid(row=1, column=1, padx=(0,350))
+        Label(root, bg='#d3d3d3', text='Enter Username:').grid(row=1, column=1)
         Entry(root, width=50, textvariable= username).grid(row=2, column=1, pady=(2,15))
         Button(root, text='Start Test', width=15, command=onStartTest).grid(row=3, column=1, pady=10)
         Button(root, text='Leaderboard', width=15, command=onLeaderboard).grid(row=4, column=1, pady=10)
