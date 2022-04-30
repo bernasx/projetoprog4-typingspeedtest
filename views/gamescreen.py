@@ -1,8 +1,10 @@
 #code for the test goes here
+from datetime import datetime
 from tkinter import *
 import random 
 from views.customwindow import CustomWindow
 from utils.wordlist import WordList
+from utils.database import Database
 
 class Gamescreen(CustomWindow):
     ingame = False
@@ -15,7 +17,7 @@ class Gamescreen(CustomWindow):
     currentIndex = 0
     def __init__(self, root, username):
         super().__init__(root)
-
+        self.username = username
         # sets the title of the Toplevel widget
         self.window.title("ISTEC Typing Speed Test")
         self.window.grid_columnconfigure((0, 4), weight=1)   
@@ -87,7 +89,7 @@ class Gamescreen(CustomWindow):
         self.startButton.config(state= "disabled")
 
     def gameEnd(self):
-        # TODO - Add DB code here to save stuff to DB if it's the end of the game
+        rightNow = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         wpm = 0
         cpm = 0
         textfieldInput = self.textfield.get()
@@ -99,9 +101,16 @@ class Gamescreen(CustomWindow):
                 cpm += len(textfieldInput.split(' ')[i])
         
         finishPopup = Toplevel(self.window)
-        finishPopup.geometry('200x200')
+        finishPopup.geometry('200x100')
+        Label(finishPopup, text=self.username).pack()
+        Label(finishPopup, text=rightNow).pack()
         Label(finishPopup, text=f'Words Per Minute: {wpm}').pack()
         Label(finishPopup, text=f'Characters Per Minute: {cpm}').pack()
+
+        #write to db
+        db = Database()
+        db.writeQuery(f'''INSERT INTO games VALUES ('{rightNow}','{self.username}',{wpm},{cpm})''')
+        db.close()
 
         self.textfield.unbind("<Button-1>") # Re-enables the mouse button
         self.textfield.delete(0, END)

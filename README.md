@@ -6,3 +6,4 @@ Requires:
 
 Module install e.g: `pip install Pillow`.
 Add a logo.jpg image at the root for the logo of the app.
+Run migrations.py to create database
