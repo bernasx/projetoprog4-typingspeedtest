@@ -15,12 +15,11 @@ class MainMenu:
             Gamescreen(root)
 
         def onLeaderboard():
-            CreditsScreen(root)
+            #TODO - Add Leaderboard
             pass 
 
         def onCredits():
-            
-            pass 
+            CreditsScreen(root) 
 
 
 
